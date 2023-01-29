@@ -1,7 +1,9 @@
+.PHONY: install format test
+
 install:
 	@poetry install
 format:
-	@isort .
-	@blue .
+	@poetry run isort .
+	@poetry run blue .
 test:
-	@pytest -v
+	@poetry run pytest --cov=.
