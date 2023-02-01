@@ -1,9 +1,15 @@
-.PHONY: install format test
+POETRY = poetry run
+.PHONY: install format test sec
+
 
 install:
 	@poetry install
 format:
-	@poetry run isort .
-	@poetry run blue .
+	@${POETRY} isort .
+	@${POETRY} blue .
 test:
-	@poetry run pytest --cov=.
+	@${POETRY} pytest
+cover:
+	@${POETRY} pytest --cov=.
+sec:
+	@${POETRY} pip-audit
