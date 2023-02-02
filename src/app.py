@@ -18,7 +18,7 @@ class Query:
     def verify(self, password: str, rules: list[JSON]) -> Password:
         check = PassRules(password, rules)
         check_all = check.check_all()
-        verify = False if check_all else True
+        verify = check.verify
 
         return Password(verify=verify, noMatch=check_all)
 

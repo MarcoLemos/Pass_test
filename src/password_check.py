@@ -1,68 +1,79 @@
-from re import findall
+from re import findall, search
+
+
+class VarNames:
+    """
+    Variables names for backend/frontend contract.
+    """
+
+    min_size = 'minSize'
+    min_upper_case = 'minUppercase'
+    min_lower_case = 'minLowercase'
+    min_digit = 'minDigit'
+    min_special_chars = 'minSpecialChars'
+    no_repeated = 'noRepeted'
 
 
 class PassRules:
+    """
+    Class receve two parameters password and rules.
+    Then verify if the given password is in conformity with the rules.
+    """
+
     def __init__(self, password, rules):
         self.password = password
         self.rules = {
-            'minSize': 0,
-            'minUppercase': 0,
-            'minLowercase': 0,
-            'minDigit': 0,
-            'minSpecialChars': 0,
-            'noRepeted': 0,
+            VarNames.min_size: 0,
+            VarNames.min_upper_case: 0,
+            VarNames.min_lower_case: 0,
+            VarNames.min_digit: 0,
+            VarNames.min_special_chars: 0,
+            VarNames.no_repeated: 0,
         }
-        self.no_machts = []
+        self.no_macht = []
+        self.verify = bool(self.no_macht)
 
         for rule in rules:
             self.rules[rule['rule']] = rule['value']
 
     def min_pass_size(self):
-        arg = 'minSize'
-        min_size = self.rules[arg]
+        min_size = self.rules[VarNames.min_size]
         total_size = len(self.password)
         if total_size < min_size:
-            self.no_machts.append(arg)
+            self.no_macht.append(VarNames.min_size)
 
     def min_pass_upper(self):
-        arg = 'minUppercase'
-        min_upper = self.rules[arg]
-        upper_size = [char.isupper() for char in self.password].count(True)
+        min_upper = self.rules[VarNames.min_upper_case]
+        upper_size = sum(map(str.isupper, self.password))
         if upper_size < min_upper:
-            self.no_machts.append(arg)
+            self.no_macht.append(VarNames.min_upper_case)
 
     def min_pass_lower(self):
-        arg = 'minLowercase'
-        min_lower = self.rules[arg]
-        lower_size = [char.islower() for char in self.password].count(True)
+        min_lower = self.rules[VarNames.min_lower_case]
+        lower_size = sum(map(str.islower, self.password))
         if lower_size < min_lower:
-            self.no_machts.append(arg)
+            self.no_macht.append(VarNames.min_lower_case)
 
     def min_pass_digit(self):
-        arg = 'minDigit'
-        min_digit = self.rules[arg]
-        digit_size = [char.isdigit() for char in self.password].count(True)
+        min_digit = self.rules[VarNames.min_digit]
+        digit_size = sum(map(str.isdigit, self.password))
         if digit_size < min_digit:
-            self.no_machts.append(arg)
+            self.no_macht.append(VarNames.min_digit)
 
     def min_pass_special(self):
-        arg = 'minSpecialChars'
-        min_special = self.rules[arg]
+        min_special = self.rules[VarNames.min_special_chars]
         regex = '[@_!#$%^&*()<>?/\|}{~:]'
         special_size = len(findall(regex, self.password))
         if special_size < min_special:
-            self.no_machts.append(arg)
+            self.no_macht.append(VarNames.min_special_chars)
 
     def pass_repeticion(self):
-        arg = 'noRepeted'
-        max_repetition = self.rules[arg]
-        if max_repetition:
-            regex = '((.)\2{{{max_repetition}}})'.format(
-                max_repetition=str(max_repetition) + ','
-            )
-            repetitions = bool(findall(rf'{regex}', self.password))
+        max_repetition = self.rules[VarNames.no_repeated]
+        if max_repetition > 1:
+            regex = '(.)\\1{' + str(max_repetition - 1) + '}'
+            repetitions = bool(search(rf'{regex}', self.password))
             if repetitions:
-                self.no_machts.append(arg)
+                self.no_macht.append(VarNames.no_repeated)
 
     def check_all(self):
         self.min_pass_size()
@@ -72,4 +83,4 @@ class PassRules:
         self.min_pass_special()
         self.pass_repeticion()
 
-        return self.no_machts
+        return self.no_macht
