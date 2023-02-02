@@ -1,1 +1,3 @@
-site_name: Password_app
+site_name: Pass_test
+nav:
+    - Home: 'README.md'

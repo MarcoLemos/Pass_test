@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pass-test"
-version = "0.1.0"
+version = "0.1.2"
 description = "App para checagem de passwords"
 authors = ["Marco Lemos <marco.trab4@gmail.com>"]
 readme =  ["docs/index.md"]

@@ -1,5 +1,5 @@
 POETRY = poetry run
-.PHONY: install shell run format test sec
+.PHONY: install shell run format test sec docs
 
 
 install:
@@ -17,3 +17,5 @@ cover:
 	@${POETRY} pytest --cov=.
 sec:
 	@${POETRY} pip-audit
+docs:
+	@${POETRY} mkdocs serve
