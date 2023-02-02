@@ -1,9 +1,13 @@
 POETRY = poetry run
-.PHONY: install format test sec
+.PHONY: install shell run format test sec
 
 
 install:
 	@poetry install
+shell:
+	@poetry shell
+run:
+	strawberry server src.app
 format:
 	@${POETRY} isort .
 	@${POETRY} blue .
