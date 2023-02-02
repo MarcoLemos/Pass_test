@@ -3,7 +3,7 @@ name = "pass-test"
 version = "0.1.2"
 description = "App para checagem de passwords"
 authors = ["Marco Lemos <marco.trab4@gmail.com>"]
-readme =  ["docs/index.md"]
+readme =  ["docs/README.md"]
 packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
