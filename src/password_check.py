@@ -16,7 +16,7 @@ class VarNames:
 
 class PassRules:
     """
-    Class receve two parameters password and rules.
+    Class recieve two parameters: password and rules.
     Then verify if the given password is in conformity with the rules.
     """
 

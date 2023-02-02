@@ -9,7 +9,7 @@ from src.password_check import PassRules
 @strawberry.type
 class Password:
     verify: bool
-    noMatch: list[str]
+    noMatch: list[JSON]
 
 
 @strawberry.type
