@@ -6,17 +6,17 @@ Pass_test utiliza Grapql e Fast Api para receber requisições em HTTP com a sen
 
 As bibliotecas Uvicorn e Strawberry são utilizadas para realizarem a integração entre o Fast Api e o Graphql.
 
-Portanto, as dependencias desse projeto são:
+Portanto, as dependências desse projeto são:
 - python 
 - fastapi 
 - uvicorn 
 - strawberry-graphql
 
 Além disso são utilizadas as bibliotecas no auxilio do desenvolvimento (group dev):
-- pytest: Testes unitarios
+- pytest: Testes unitários
 - isort: Organização dos imports
 - mkdocs: Documentação
-- blue: Formatação automatica
+- blue: Formatação automática
 - pytest-cov: Opções para verificação de cobertura dos testes
 - pip-audit: Verificação de integridade das bibliotecas utilizadas no projeto
 
@@ -47,7 +47,6 @@ curl -sSL https://install.python-poetry.org | python3 -
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
 ~~~
 Instruções adicionais podem ser encontradas na documentação da biblioteca. [Poetry Docs](https://python-poetry.org/docs/)
-
 
 ## Opcional: Se preferir criar o ambiente virtual na pasta raiz do projeto
 ~~~
@@ -108,9 +107,24 @@ make format
 make sec
 ~~~
 
+## Dockerfile
+
+Para criar a imagem
+- imagem **passimage**
+~~~
+make image
+~~~
+
+Para criar o container
+- container **passcontainer**
+- O acesso pode ser feito na porta (http://0.0.0.0:8080/graphql)
+~~~
+make cont
+~~~
+
 ## Git hooks
 
-Esse projeto conta com configuração basica de pre commit. São executados os comandos de testes e formatação. 
+Esse projeto conta com configuração básica de pre commit. São executados os comandos de testes e formatação. 
 O hook pode ser encontrado em:
 
 ~~~
@@ -119,7 +133,7 @@ O hook pode ser encontrado em:
 
 ## Github actions
 
-Esse projeto conta com analise integrada do github actions. São executados os comandos de testes e formatação.  
+Esse projeto conta com analise integrada do github actions. São executados os comandos de testes e formatação. 
 O arquivo de workflow pode ser encontrado em:
 
 ~~~
