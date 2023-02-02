@@ -16,7 +16,7 @@ class VarNames:
 
 class PassRules:
     """
-    Class recieve two parameters: password and rules.
+    Class receive two parameters: password and rules.
     Then verify if the given password is in conformity with the rules.
     """
 
@@ -62,12 +62,12 @@ class PassRules:
 
     def min_pass_special(self):
         min_special = self.rules[VarNames.min_special_chars]
-        regex = '[@_!#$%^&*()<>?/\|}{~:]'
+        regex = '[@_!#$%^&*()<>?/|}{~:]'
         special_size = len(findall(regex, self.password))
         if special_size < min_special:
             self.no_macht.append(VarNames.min_special_chars)
 
-    def pass_repeticion(self):
+    def pass_repetition(self):
         max_repetition = self.rules[VarNames.no_repeated]
         if max_repetition > 1:
             regex = '(.)\\1{' + str(max_repetition - 1) + '}'
@@ -81,6 +81,6 @@ class PassRules:
         self.min_pass_lower()
         self.min_pass_digit()
         self.min_pass_special()
-        self.pass_repeticion()
+        self.pass_repetition()
 
         return self.no_macht

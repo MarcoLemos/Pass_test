@@ -41,8 +41,8 @@ def test_min_pass_special():
     assert var_names.min_special_chars in pass_rules.no_macht
 
 
-def test_pass_repeticion():
-    pass_rules.pass_repeticion()
+def test_pass_repetition():
+    pass_rules.pass_repetition()
     assert var_names.no_repeated in pass_rules.no_macht
 
 
